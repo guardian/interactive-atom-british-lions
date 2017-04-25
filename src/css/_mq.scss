@@ -11,6 +11,7 @@ $mq-breakpoints: (
     mobile:  320px,
     tablet:  740px,
     desktop: 980px,
+    leftCol: 1140px,
     wide:    1300px,
 
     // Tweakpoints
@@ -28,4 +29,4 @@ $mq-static-breakpoint: desktop;
 // to this list, ordered by width, e.g. (mobile, tablet, desktop).
 // $mq-show-breakpoints: (mobile, mobileLandscape, tablet, desktop, wide);
 
-@import 'node_modules/sass-mq/mq';
+@import 'bower_components/sass-mq/mq';

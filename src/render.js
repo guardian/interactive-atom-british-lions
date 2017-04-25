@@ -8,6 +8,7 @@ import {
 } from 'lodash';
 
 import mainTemplate from './src/templates/main.html!text'
+import headerTemplate from './src/templates/header.html!text'
 import facewallTemplate from './src/templates/facewall.html!text'
 
 export async function render() {
@@ -16,17 +17,25 @@ export async function render() {
         json: true
     }));
 
-    let facewallHTML = Mustache.render(facewallTemplate, { "sections": data.sections });
+    let strStart = "<div class='interactive-container'>";
 
-    console.log(data.sections)
+    let strEnd = "</div>" 
 
-    return `${facewallHTML}`;
+    let mainHTML = Mustache.render(mainTemplate);
+
+    let headerHTML = Mustache.render(headerTemplate);
+
+    let facewallHTML = Mustache.render(facewallTemplate, { "sections": data.sections });   
+
+    return `${strStart}${headerHTML}${facewallHTML}${strEnd}`;
 
 }
 
-function formatData(data) {
 
+
+function formatData(data) {
     let players = data.sheets.Players;
+    let sectionsCopy = data.sheets.sectionHeads;
     let count = 0;
     players.map((player) => {
     	player.id = "player-"+count;
@@ -37,9 +46,9 @@ function formatData(data) {
 
     })
 
-    let sectionTitles = getUniques(players, 'position');
+    let sectionTitles = getUniques(players, 'detailed position');
 
-    let sectionsArr = getSections(sectionTitles, players, 'position')
+    let sectionsArr = getSections(sectionTitles, players, 'detailed position', sectionsCopy)
 
     players.sections = sectionsArr;
 
@@ -48,7 +57,7 @@ function formatData(data) {
 
 
 
-function getSections(a, b, s) {
+function getSections(a, b, s, copyArr) {
     let d = [];
 
     // set array framework
@@ -67,6 +76,15 @@ function getSections(a, b, s) {
             }
         }
 
+        for (var k = 0; k < copyArr.length; k++) {
+
+            if (d[i].key == copyArr[k]['position']) {
+                d[i].head = copyArr[k]['title']
+                d[i].description = copyArr[k]['description']
+                tempArr.push(b[k]);
+            }
+        }
+
         d[i].items = tempArr;
     }
 
@@ -74,45 +92,7 @@ function getSections(a, b, s) {
 
 }
 
-// function initScroll(){
-//     var windowHeight = window.innerHeight;
-//     var els = document.querySelectorAll('.facewall-item[data-loaded="false"]');
-//     var detailEls = document.querySelectorAll('.detail-item-container[data-loaded="false"]');
-//     window.addEventListener( 'scroll', debounce(function(){checkScrollHeight('mainView')}, 10) );
-//     if(isMobile){ document.querySelector('#detail-scroll-area').addEventListener('scroll', debounce(function(){checkScrollHeight('detailView')},10) ); }
 
-//     function checkScrollHeight(view){
-//         if(view === "mainView"){
-//             for(var i=0;i<els.length;i++){
-//                 if(els[i].getBoundingClientRect().top < windowHeight * 1.5){ lazyLoadImage(i); }
-
-//                 if(els[i].getBoundingClientRect().top < windowHeight - 5){
-//                     els[i].setAttribute('data-showed','true');
-//                 }
-//             }
-//         }else if(view === "detailView" && isMobile){
-//             for(var i=0;i<detailEls.length;i++){
-//                 if(detailEls[i].getBoundingClientRect().top < windowHeight * 2){ lazyLoadImage(i); }
-//             }
-//         }
-//     };   
-
-//     function lazyLoadImage(index){
-//         els[index].setAttribute('data-loaded','true');
-//         var baseUrl = "https://interactive.guim.co.uk/2016/08/olympics-athletes-photos/";
-//         if(isMobile) { baseUrl = "https://interactive.guim.co.uk/2016/08/olympics-athletes-photos/optim/" }
-
-//         var itemPhoto = els[index].querySelector('.item-photo').getAttribute('data-src');
-//         els[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + encodeURIComponent(itemPhoto) + ")"
-        
-//         if(isMobile){
-//            detailEls[index].setAttribute('data-loaded','true'); 
-//            detailEls[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + encodeURIComponent(itemPhoto) + ")"
-//         } 
-//     }
-
-//     checkScrollHeight('mainView');
-// }
 
 function getUniques(a, s) {
     let t = []
@@ -125,5 +105,7 @@ function getUniques(a, s) {
 
     return newArr;
 }
+
+
 
 

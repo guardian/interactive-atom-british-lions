@@ -3,12 +3,13 @@
 	<div id="line-box"></div>
 </div>
 
-
+<div class="" id="gv-content-container">
 
 {{#sections}}
 	<section class="facewall-section">
 
-		 <h3><span><img src="<%=path%>/assets/imgs/elipse-mask.svg" /></span>{{{key}}}s</h3>
+		 <h3><span><img src="<%=path%>/assets/imgs/elipse-mask.svg" /></span>{{{head}}}</h3>
+		 <p>{{{description}}}</p>
 
 		<div class="facewall-items-container">
 			
@@ -17,13 +18,13 @@
 					<div class="facewall-item" data-loaded="false" data-showed="false" data-id="{{{id}}}">
 
 						<div class="item-photo-container">
-							<div class="item-photo" data-src="{{{photo_filename}}}"  style="background-image:url(<%=path%>/assets/imgs/players/{{{photo_filename}}})"></div>
+							<div class="item-photo" data-src="{{{photo_filename}}}"></div>
 							<div class="item-flag" style="background-image:url(<%=path%>/assets/imgs/flags/{{{homeNation}}}.svg)"></div>
 						</div>
 
 						<div class="item-label-container">
-				    		<p class="item-primary-label">{{name}}</p>
-				    		<p class="item-secondary-label">{{homeNation}}</p>
+				    		<p class="item-primary-label">{{{name}}}</p>
+				    		<p class="item-secondary-label">{{{homeNation}}}</p>
 				    	</div>
 
 					</div>
@@ -34,6 +35,8 @@
 	</section>
 
 {{/sections}}
+
+</div>
 
 
 
