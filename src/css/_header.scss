@@ -12,11 +12,14 @@ $header-bg:$news-main-2;
 .header-container {
 	max-width:1300px;
 	margin: 0 auto;
-	
-	// background-color:#009344;
-	background-color: rgba($header-bg,1);
+	background:linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),url(./assets/imgs/badge.png);
+	background-blend-mode:multiply;
+	background-repeat:no-repeat;
 
+
+	height:100%;
 	header{
+
 		position: relative;
 		margin:0 -10px;
 		overflow: hidden;
@@ -141,7 +144,7 @@ $header-bg:$news-main-2;
 
 	@media(min-width:1300px){
 		.header-inner-container{
-			margin-top:gs-height(9)-$gs-baseline;
+			margin-top:gs-height(9);
 			margin-left:260px;
 		}
 	}	

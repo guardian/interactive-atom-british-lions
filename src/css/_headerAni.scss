@@ -1,32 +1,144 @@
-$aniTime:60s;
+$aniTime:20s;
 
 .gv-head-img-one,
-.gv-head-img-two {
+.gv-head-img-two, 
+.gv-head-img-three,
+.gv-head-img-four{
     position:absolute;
     bottom: 0;
     right: 0;
-    height: 578px;
+    height: gs-height(15);
     overflow: hidden;
 }
 
 .gv-head-img-one {
-	background:linear-gradient(to right, $news-main-2 0%,$news-main-2 100%),url(./assets/imgs/rugby-co-1.png);
+	background:url(./assets/imgs/rugby-co-1.png);//linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
+	background-blend-mode:multiply;
 	background-repeat:no-repeat;
 	background-size:cover;
-	background-blend-mode:multiply;
-
-    width: 50%;
+	left:calc(50% - 10px);
+    width: 40%;
+    opacity:0;
+    animation: AniOne $aniTime ease-out infinite;
     // background-color: $news-main-1;
    
 }
 
 .gv-head-img-two {
-    width: 60%;
-    left:40%;
-    // background-color: $news-main-2;
+	background:url(./assets/imgs/rugby-co-2.png);
+	background-blend-mode:multiply;
+	background-repeat:no-repeat;
+	background-size:cover;
+	left:calc(50% - 10px);
+    width: 40%;
+    opacity:0;
+    animation: AniTwo $aniTime ease-out infinite;
 
-     // -webkit-transform: skew(30deg);
-     //   -moz-transform: skew(30deg);
-     //     -o-transform: skew(30deg);
+}
 
+.gv-head-img-three {
+	background:url(./assets/imgs/rugby-co-3.png);
+	background-blend-mode:multiply;
+	background-repeat:no-repeat;
+	background-size:cover;
+	left:calc(50% - 10px);
+    width: 40%;
+    opacity:0;
+    animation: AniThree $aniTime ease-out infinite;
+    // background-color: $news-main-1;
+   
+}
+
+.gv-head-img-four {
+	background:url(./assets/imgs/rugby-co-4.png);
+	background-blend-mode:multiply;
+	background-repeat:no-repeat;
+	background-size:cover;
+	left:calc(50% - 10px);
+    width: 40%;
+    opacity:0;
+    animation: AniFour $aniTime ease-out infinite;
+
+}
+
+
+
+@keyframes AniOne {
+    0% {
+        opacity: 0;
+    }
+    3% {
+        opacity: 1;
+    }
+    22% {
+        opacity: 1;
+    }
+    
+    25% {
+        opacity: 0;
+    }
+ 
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes AniTwo {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    28% {
+        opacity: 1;
+    }
+    
+    47% {
+        opacity: 1;
+    }
+ 
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes AniThree {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    58% {
+        opacity: 1;
+    }
+    
+    72% {
+        opacity: 1;
+    }
+ 
+    75% {
+        opacity: 0;
+    }
+}
+
+@keyframes AniFour {
+     0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0;
+    }
+    78% {
+        opacity: 1;
+    }
+    
+    97% {
+        opacity: 1;
+    }
+ 
+    100% {
+        opacity: 0;
+    }
 }

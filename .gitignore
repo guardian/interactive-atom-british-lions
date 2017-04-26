@@ -1,5 +1,6 @@
 node_modules/
 bower_components/
+working/
 .build/
 .local/
 yarn.lock
