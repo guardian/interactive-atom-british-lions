@@ -1,0 +1,32 @@
+$aniTime:60s;
+
+.gv-head-img-one,
+.gv-head-img-two {
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    height: 578px;
+    overflow: hidden;
+}
+
+.gv-head-img-one {
+	background:linear-gradient(to right, $news-main-2 0%,$news-main-2 100%),url(./assets/imgs/rugby-co-1.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-blend-mode:multiply;
+
+    width: 50%;
+    // background-color: $news-main-1;
+   
+}
+
+.gv-head-img-two {
+    width: 60%;
+    left:40%;
+    // background-color: $news-main-2;
+
+     // -webkit-transform: skew(30deg);
+     //   -moz-transform: skew(30deg);
+     //     -o-transform: skew(30deg);
+
+}

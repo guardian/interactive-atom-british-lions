@@ -1,0 +1,151 @@
+@import "palette";
+$header-bg:$news-main-2;
+
+@import "headerAni";
+
+.header-wrapper{
+	width:100%;
+	background-color: darken( $header-bg, 10% );
+}
+
+
+.header-container {
+	max-width:1300px;
+	margin: 0 auto;
+	
+	// background-color:#009344;
+	background-color: rgba($header-bg,1);
+
+	header{
+		position: relative;
+		margin:0 -10px;
+		overflow: hidden;
+		height: gs-height(15);
+		color:$neutral-6;
+
+		.header-background{
+			position:absolute;
+			left:0;
+			right:0;
+			top:0;
+			bottom:0;
+			z-index:0;
+			height: 100%;
+		}
+		ul{
+			margin:0;
+			padding:0;
+			margin-bottom:12px;
+			li{
+				font-family:$f-serif-headline;
+				font-weight:bold;
+				list-style:none;
+				margin:0;
+				padding:0;
+				font-size:16px;
+				line-height:18px;
+				&:before{
+					display: inline-block;
+					content: '';
+					-webkit-border-radius: 12px;
+					border-radius: 12px;
+					height: 12px;
+					width: 12px;
+					margin-right: 4px;
+					background-color: #333;
+				}
+			}
+			
+		}
+
+	@media(min-width:480px){
+		header{
+			margin:0 -20px;
+			ul{
+				margin-bottom:18px;
+			}
+			ul li{
+				font-size:18px;
+			}
+		}
+		h1{
+			font-size:54px;
+			margin-top:30px;
+		}
+		h2{
+			margin-bottom:12px;
+		}
+		.gv-share-container{
+			margin-top:36px;
+		}
+		.header-inner-container{
+			margin-left:20px;
+			margin-right:20px;
+			padding-bottom:12px;
+		}
+	}
+
+	@media(min-width:740px){
+		h1{
+			font-size:60px;
+		}
+		h2{
+			font-size:27px;
+			line-height:33px;
+		}
+		.gv-byline{
+			font-size:16px;
+			line-height:21px;
+			width:calc(100% - 120px);
+			float:left
+		}
+	}
+
+	@media(min-width:980px){
+		.header-inner-container{
+			padding:0;
+			margin-left:20px;
+			padding-bottom:12px;
+			max-width: gs-span(7);
+		}
+		h1{
+			@include fs-headline(9);
+			font-size:3.25rem;
+			font-weight: 200;
+		}
+		h2{
+			font-size:30px;
+			margin-top:42px;
+			// margin-bottom:18px;
+		}
+		ul{
+			margin-bottom:24px;
+		}
+		.gv-share-container{
+			margin-top:36px;
+		}
+	}
+
+	@media(min-width:1140px){
+		.header-inner-container{
+			margin-left:180px;
+			margin-right:0;
+		}
+
+
+		header ul li{
+			font-size:21px;
+			line-height:1em;
+		}
+	}
+
+	@media(min-width:1300px){
+		.header-inner-container{
+			margin-top:gs-height(9)-$gs-baseline;
+			margin-left:260px;
+		}
+	}	
+
+
+	}
+}

@@ -10,6 +10,9 @@ import {
 import mainTemplate from './src/templates/main.html!text'
 import headerTemplate from './src/templates/header.html!text'
 import facewallTemplate from './src/templates/facewall.html!text'
+import footerTemplate from './src/templates/footer.html!text'
+//import itemDetailTemplate from './src/templates/itemDetail.html!text'
+
 
 export async function render() {
     let data = formatData(await rp({
@@ -25,9 +28,15 @@ export async function render() {
 
     let headerHTML = Mustache.render(headerTemplate);
 
-    let facewallHTML = Mustache.render(facewallTemplate, { "sections": data.sections });   
+    let footerHTML = Mustache.render(footerTemplate);
 
-    return `${strStart}${headerHTML}${facewallHTML}${strEnd}`;
+    let facewallHTML = Mustache.render(facewallTemplate, { "sections": data.sections });
+
+    //let itemDetailHTML = Mustache.render(itemDetailTemplate);  
+
+    //Mustache.registerPartial('itemDetail',itemDetailHTML);
+
+    return `${headerHTML}${strStart}${facewallHTML}${footerHTML}${strEnd}`;
 
 }
 
