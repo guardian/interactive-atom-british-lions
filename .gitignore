@@ -1,6 +1,7 @@
 node_modules/
 bower_components/
 working/
+src/assets/imgs/players
 .build/
 .local/
 yarn.lock
