@@ -24,11 +24,15 @@ a {
     box-sizing: border-box;
     background-color: white;
 
-    padding: 0 10px;
+    padding: 0;
+
+    // @include mq(mobileLandscape) {
+    //     padding: 0;
+    // }
 
     header{
 		position: relative;
-		margin:0 -10px;
+		margin:0;
 		overflow: hidden;
 
 		.header-background{
@@ -69,9 +73,7 @@ a {
 
 
     
-    @include mq(mobileLandscape) {
-        padding: 0 20px;
-    }
+    
 
     @each $bp in (tablet, desktop, leftCol, wide) {
         @include mq($bp) {

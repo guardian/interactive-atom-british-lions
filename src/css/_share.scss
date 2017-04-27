@@ -1,26 +1,100 @@
-.interactive-share {
-    height: 30px;
-    width: 30px;
-    border-radius: 34px;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 26px;
-    border:1px solid #333;
-    background-color:transparent;
+.share-wrapper{
+    width:100%;
+}
 
-    &[data-network='facebook'] {
-        background-image: url(assets/imgs/facebook.svg);
+.share-container {
+    max-width:1260px;
+    margin: 0 10px;
+    padding: 0 10px 6px;
+    border-bottom: solid 1px $neutral-5;
+    
+    height:auto;
+
+
+
+    .share-inner{
+        position: relative;
+
+        overflow: hidden;
+        height: gs-height(1)+$gs-baseline;
+        color:$neutral-1;
+
+    .share-inner-left{
+        margin: $gs-baseline 0;
+    }    
+
+    .time-stamp{
+        @include fs-textSans(3);
+        margin-top: 3px;
+        color: $neutral-3;
     }
 
-    &[data-network='twitter'] {
-        background-image: url(assets/imgs/twitter.svg);
+    .share-inner-main{
+                    position: absolute;
+                    height: auto; 
+                    top: 0;
+                    margin: $gs-baseline 0;
+                    padding-bottom: gs-height(1);
+
+                    @include mq(mobileLandscape){
+                        margin-left:20px;
+                        margin-right:20px;  
+                    }
+
+                    @include mq(desktop){
+                        padding:0 0  gs-height(1) 0;
+                        margin-left:20px;
+                        max-width: gs-span(7);
+                    }
+
+                    @include mq(leftCol){
+                         margin-left: 140px;
+                         margin-right:0;               
+                    }
+
+                    @include mq(wide){
+                         margin-left: 240px;               
+                    }
+                }   
     }
 
-    &[data-network='email'] {
-        background-image: url(assets/imgs/mail.svg);
-    }
+    .interactive-share {
+        height: 32px;
+        width: 32px;
+        border-radius: 34px;
+        background: #333;
+        display: inline-block;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px;
+        background-color: rgba(255,255,255,0.25);
+
+        &[data-network='facebook'] {
+            background-color: #3067a3;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iLTIgLTIgMzIgMzIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xNy45IDE0aC0zdjhIMTJ2LThoLTJ2LTIuOWgyVjguN0MxMiA2LjggMTMuMSA1IDE2IDVjMS4yIDAgMiAuMSAyIC4xdjNoLTEuOGMtMSAwLTEuMi41LTEuMiAxLjN2MS44aDNsLS4xIDIuOHoiLz48L3N2Zz4=);
+            &:hover {
+                background-color: #244e7c;
+            }
+        }
+
+        &[data-network='twitter'] {
+            background-color: #03b3ee;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iLTIgLTIgMzIgMzIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMS4zIDEwLjV2LjVjMCA0LjctMy41IDEwLjEtOS45IDEwLjEtMiAwLTMuOC0uNi01LjMtMS42LjMgMCAuNi4xLjguMSAxLjYgMCAzLjEtLjYgNC4zLTEuNS0xLjUgMC0yLjgtMS0zLjMtMi40LjIgMCAuNC4xLjcuMWwuOS0uMWMtMS42LS4zLTIuOC0xLjgtMi44LTMuNS41LjMgMSAuNCAxLjYuNC0uOS0uNi0xLjYtMS43LTEuNi0yLjkgMC0uNi4yLTEuMy41LTEuOCAxLjcgMi4xIDQuMyAzLjYgNy4yIDMuNy0uMS0uMy0uMS0uNS0uMS0uOCAwLTIgMS42LTMuNSAzLjUtMy41IDEgMCAxLjkuNCAyLjUgMS4xLjgtLjEgMS41LS40IDIuMi0uOC0uMy44LS44IDEuNS0xLjUgMS45LjctLjEgMS40LS4zIDItLjUtLjQuNC0xIDEtMS43IDEuNXoiLz48L3N2Zz4=);
+            &:hover {
+                background-color: #028dbc;
+            }
+        }
+
+        &[data-network='email'] {
+            background-color: #767676;
+            background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iLTIgLTIgMzIgMzIiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0yMC4yIDExLjdsLS40LS40LTUuNyAyLjctNS43LTIuNy0uMy40IDYgNC45IDYuMS00Ljl6TTIxLjQgN0g2LjVMNSA5LjV2OS4zTDYuNiAyMGgxNC45bDEuNS0xLjJWOS41TDIxLjQgN3ptLS41IDEwLjhINy4xVjkuMmgxMy44djguNnoiLz48L3N2Zz4=);
+            &:hover {
+                background-color: #5d5d5d;
+            }
+        }
+    }   
+
 }

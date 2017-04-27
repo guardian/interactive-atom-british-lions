@@ -11,6 +11,7 @@ import mainTemplate from './src/templates/main.html!text'
 import headerTemplate from './src/templates/header.html!text'
 import facewallTemplate from './src/templates/facewall.html!text'
 import footerTemplate from './src/templates/footer.html!text'
+import shareTemplate from './src/templates/share.html!text'
 //import itemDetailTemplate from './src/templates/itemDetail.html!text'
 
 
@@ -24,7 +25,7 @@ export async function render() {
 
     let strEnd = "</div>" 
 
-    let mainHTML = Mustache.render(mainTemplate);
+    let shareHTML = Mustache.render(shareTemplate);
 
     let headerHTML = Mustache.render(headerTemplate);
 
@@ -36,7 +37,7 @@ export async function render() {
 
     //Mustache.registerPartial('itemDetail',itemDetailHTML);
 
-    return `${headerHTML}${strStart}${facewallHTML}${footerHTML}${strEnd}`;
+    return `${headerHTML}${strStart}${shareHTML}${facewallHTML}${footerHTML}${strEnd}`;
 
 }
 
@@ -47,9 +48,11 @@ function formatData(data) {
     let sectionsCopy = data.sheets.sectionHeads;
     let count = 0;
     players.map((player) => {
+
+
     	player.id = "player-"+count;
     	player.flag = 'Ireland.svg';
-    	player.photo_filename = 'Sam_Warburton.jpg';
+    	player.photo_filename = player.name.replace(/'/,'')+'.jpg';
     	player.homeNation = player["Home nation"];
     	count++;
 

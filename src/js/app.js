@@ -5,7 +5,6 @@ function initTemplate(){
     initScroll()
 }
 
-
 function initScroll(){
     var windowHeight = window.innerHeight;
     var els = document.querySelectorAll('.facewall-item[data-loaded="false"]');
