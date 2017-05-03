@@ -13,6 +13,10 @@ $header-height: gs-height(15);
 		width:40%;
 		background-color:$header-support;
 		height: $header-height;
+		display:none;
+		@include mq(leftCol){
+			display:block;
+		}
 	}
 }
 

@@ -37,15 +37,29 @@
 		width:44px;
 		height:44px;
 		background-color:#333;
-		background-image: url(assets/imgs/arrow.svg);
+		background-image: url('<%= path %>/assets/arrow.svg');
 		border-radius:9999px;
 		position: absolute;
-		bottom:40px;
+		top: gs-height(1);
 		left:-14px;
 		background-size:60%;
 		background-repeat:no-repeat;
 		background-position:center;
 		transform:rotate(180deg);
+	}
+
+	.mobile-detail-box{
+		position: fixed;
+		width:100%;
+		height:100%;
+		background:rgba(#FFF,0.95);
+		left:$gs-gutter;
+		top:0;
+		margin: 0;
+		padding: gs-height(2) $gs-gutter 0; 
+		display:none;
+		border-left: 1px solid #666;
+
 	}
 
 	#detail-box-container{
