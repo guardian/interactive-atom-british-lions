@@ -12,7 +12,7 @@ import headerTemplate from './src/templates/header.html!text'
 import facewallTemplate from './src/templates/facewall.html!text'
 import footerTemplate from './src/templates/footer.html!text'
 import shareTemplate from './src/templates/share.html!text'
-//import itemDetailTemplate from './src/templates/itemDetail.html!text'
+// import itemDetailTemplate from './src/templates/itemDetail.html!text';
 
 
 export async function render() {
@@ -33,10 +33,6 @@ export async function render() {
 
     let facewallHTML = Mustache.render(facewallTemplate, { "sections": data.sections });
 
-    //let itemDetailHTML = Mustache.render(itemDetailTemplate);  
-
-    //Mustache.registerPartial('itemDetail',itemDetailHTML);
-
     return `${headerHTML}${strStart}${shareHTML}${facewallHTML}${footerHTML}${strEnd}`;
 
 }
@@ -47,15 +43,13 @@ function formatData(data) {
     let players = data.sheets.Players;
     let sectionsCopy = data.sheets.sectionHeads;
     let count = 0;
+    
     players.map((player) => {
-
-
     	player.id = "player-"+count;
-    	player.flag = 'Ireland.svg';
     	player.photo_filename = player.name.replace(/'/,'')+'.jpg';
     	player.homeNation = player["Home nation"];
+        player.Description = player.description;
     	count++;
-
     })
 
     let sectionTitles = getUniques(players, 'detailed position');
@@ -63,6 +57,8 @@ function formatData(data) {
     let sectionsArr = getSections(sectionTitles, players, 'detailed position', sectionsCopy)
 
     players.sections = sectionsArr;
+
+    fs.writeFileSync("./.build/assets/data/players.json", JSON.stringify(players));
 
     return players;
 }

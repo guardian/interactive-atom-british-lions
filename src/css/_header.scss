@@ -1,32 +1,102 @@
 @import "palette";
-$header-bg:$news-main-2;
-
-@import "headerAni";
+$header-height: gs-height(15);
 
 .header-wrapper{
+	position: relative;
 	width:100%;
-	background-color: darken( $header-bg, 10% );
+	background-color: $header-bg; //darken( $header-bg, 10% );
+
+	.header-col-two{
+		position:absolute;
+		top:0;
+		left:60%;
+		width:40%;
+		background-color:$header-support;
+		height: $header-height;
+	}
+}
+
+
+.header-inner-wrapper{
+	position: absolute;
+	height: auto; 
+	bottom: 0;
+	width:100%;
+
+	background-color:rgba(0,0,0,0.7);
+
+
+	.header-inner-container{
+		width:100%;
+		max-width:1300px;
+		margin: 0 auto;
+	}
+
+	.header-inner-main{
+			width:100%;
+			max-width: gs-span(7);
+			padding-bottom: gs-height(1);
+
+			@include mq(mobileLandscape){
+				margin-left:20px;
+				margin-right:20px;
+			}
+
+			@include mq(desktop){
+				padding:0 0  gs-height(1) 0;
+				margin-left:20px;
+				max-width: gs-span(8);
+			}
+
+			@include mq(leftCol){
+				 margin-left: 180px;
+				 margin-right:0;			   
+			}
+
+			@include mq(wide){
+				 margin-left: 260px;			   
+			}
+		}	
+
+		.gv-byline{
+				@include fs-textSans(3);
+				width:calc(100% - 120px);
+				float:left
+		}
+
+		.standfirst-para{
+			color:#FFF;
+			position: relative;
+		}
+
+		.main-standfirst{
+			padding-top:$gs-baseline;
+		}
+		.main-standfirst:before{
+			content: '';
+		    position: absolute;
+		    top: 0;
+		    height: 0.125rem;
+		    width: 8.75rem;
+		    background-color: rgba(255,255,255,0.2);
+		}
 }
 
 
 .header-container {
 	max-width:1300px;
 	margin: 0 auto;
-	background:linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),url(./assets/imgs/badge.png);
-	background-blend-mode:screen;
+	background:url(./assets/imgs/badge-color.png);
+	//background-blend-mode:screen; linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
 	background-repeat:no-repeat;
-
-
 	height:100%;
-	header{
 
+	header{
 		position: relative;
 		margin:0;
 		overflow: hidden;
-		height: gs-height(12);
+		height: gs-height(15 );
 		color:$neutral-6;
-
-
 
 		.header-background{
 			position:absolute;
@@ -79,40 +149,6 @@ $header-bg:$news-main-2;
 			
 		}
 
-		.header-inner-container{
-			position: absolute;
-			height: auto; 
-			bottom: 0;
-			padding-bottom: gs-height(1);
-
-			@include mq(mobileLandscape){
-				margin-left:20px;
-				margin-right:20px;
-				
-			}
-
-			@include mq(desktop){
-				padding:0 0  gs-height(1) 0;
-				margin-left:20px;
-				max-width: gs-span(7);
-			}
-
-			@include mq(leftCol){
-				 margin-left: 180px;
-				 margin-right:0;			   
-			}
-
-			@include mq(wide){
-				 margin-left: 260px;			   
-			}
-		}	
-
-
-		.gv-byline{
-				@include fs-textSans(3);
-				width:calc(100% - 120px);
-				float:left
-		}
 
 	}
 }

@@ -5,18 +5,20 @@ $aniTime:20s;
 .gv-head-img-three,
 .gv-head-img-four{
     position:absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
-    height: gs-height(12);
+    height: $header-height;
     overflow: hidden;
+    left:calc(51% - 10px);
+    mix-blend-mode: screen;
 }
 
 .gv-head-img-one {
 	background:url(./assets/imgs/rugby-co-1.png);//linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
-	background-size:cover;
-	left:calc(50% - 10px);
+	background-size:contain;
+    background-position:center bottom;
     width: 40%;
     opacity:0;
     animation: AniOne $aniTime ease-out infinite;
@@ -28,8 +30,8 @@ $aniTime:20s;
 	background:url(./assets/imgs/rugby-co-2.png);
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
-	background-size:cover;
-	left:calc(50% - 10px);
+	background-size:contain;
+    background-position:center bottom;
     width: 40%;
     opacity:0;
     animation: AniTwo $aniTime ease-out infinite;
@@ -40,8 +42,8 @@ $aniTime:20s;
 	background:url(./assets/imgs/rugby-co-3.png);
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
-	background-size:cover;
-	left:calc(50% - 10px);
+	background-size:contain;
+    background-position:center bottom;
     width: 40%;
     opacity:0;
     animation: AniThree $aniTime ease-out infinite;
@@ -53,8 +55,8 @@ $aniTime:20s;
 	background:url(./assets/imgs/rugby-co-4.png);
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
-	background-size:cover;
-	left:calc(50% - 10px);
+	background-size:contain;
+    background-position:center bottom;
     width: 40%;
     opacity:0;
     animation: AniFour $aniTime ease-out infinite;

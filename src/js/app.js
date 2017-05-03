@@ -1,8 +1,45 @@
+import Mustache from 'mustache';
+
+var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo" data-src="{{{photo_filename}}}"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
+//import detailTemplate from '<%=path%>/templates/share.html!text'
 var windowWidth = window.innerWidth;
 var isMobile = windowWidth < 980 ? true : false;
 
+let dataset;
+// let itemDetailHTML = Mustache.render(itemDetailTemplate);  
+// Mustache.registerPartial('itemDetail',itemDetailHTML);
+
+
 function initTemplate(){
-    initScroll()
+
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            dataset = JSON.parse(xhr.responseText);
+
+           // for (var i = 0; i < dataset.attendances.length; i++) {
+           //      dataset.attendances[i].d3Date = parseTime(new Date(dataset.attendances[i].date));
+           //      //dataset.attendances[i].homeTeam == "Arsenal" ? arsenal.push(dataset.attendances[i]) : spurs.push(dataset.attendances[i]) ;
+           //  }
+
+            //localData = dataset.attendances;
+
+            //console.log(dataset);
+                
+            initScroll();
+            initRollOvers();
+            updatePageTexts();
+
+
+        }
+    }
+
+    xhr.open('GET', '<%= path %>/assets/data/players.json', true);
+    xhr.send(null);
+
+    //  if(!isMobile){
+    //     moveDetailBox(document.querySelectorAll('.facewall-item')[0]);
+    // } 
 }
 
 function initScroll(){
@@ -35,13 +72,12 @@ function initScroll(){
 
         var itemPhoto = els[index].querySelector('.item-photo').getAttribute('data-src');
         els[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + encodeURIComponent(itemPhoto) + ")"
-        console.log(baseUrl + encodeURIComponent(itemPhoto))
+        //console.log(baseUrl + encodeURIComponent(itemPhoto))
         if(isMobile){
            detailEls[index].setAttribute('data-loaded','true'); 
            detailEls[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + encodeURIComponent(itemPhoto) + ")"
         } 
     }
-
     checkScrollHeight('mainView');
 }
 
@@ -60,5 +96,106 @@ function debounce(func, wait, immediate) {
         if (callNow) { func.apply(context, args); }
     };
 }
+
+function initRollOvers(){
+
+    [].slice.apply(document.querySelectorAll('.facewall-item[data-loaded="true"]')).forEach(el => {
+
+        el.addEventListener('mouseover', () => moveDetailBox(el));
+
+        el.addEventListener('mouseout', () => hideDetail(el));
+    });
+    //els[index].setAttribute('data-loaded','true');
+
+}
+
+function getPlayerData(r){
+    let o;
+    [].slice.apply(dataset).forEach(el => {
+        if(el.id==r){o=el}
+
+    });
+    return o;
+
+}
+
+function moveDetailBox(pEl){
+
+    let playerData = getPlayerData(pEl.getAttribute("data-id"));
+    let detailHTML = Mustache.render(detailTemplate, playerData);
+
+     document.querySelector('.detail-box').innerHTML = detailHTML;
+
+    var pOffset = pEl.getBoundingClientRect();
+    var projectOffset = document.querySelector('.interactive-container').getBoundingClientRect();
+    var elPosition = pOffset.top - projectOffset.top;
+
+    document.querySelector('#detail-box-container').style.transform = 'translateY(' + elPosition + 'px)';
+    document.querySelector('#detail-box-container').style.webkitTransform = 'translateY(' + elPosition + 'px)';
+
+    var totalOffset = elPosition + document.querySelector('#detail-box-container').getBoundingClientRect().height;
+    var teamContainerHeight = document.querySelector('.interactive-container').getBoundingClientRect().height;
+    var isOffscreen = totalOffset > teamContainerHeight;
+    
+    if(isOffscreen){
+        var updatedOffset = teamContainerHeight - document.querySelector('#detail-box-container').getBoundingClientRect().height - 40;
+        document.querySelector('#detail-box-container').style.transform = 'translateY(' + updatedOffset + 'px)';
+        document.querySelector('#detail-box-container').style.webkitTransform = 'translateY(' + updatedOffset + 'px)';
+    }
+    
+
+    // Move lines
+    var itemChildEls = pEl.parentNode.querySelectorAll('.facewall-item');
+    var lineWidth = 10;
+    var columnCount = 4;
+    var boxOffset = document.querySelector('#detail-box-container').getBoundingClientRect();
+    var diff = boxOffset.left - pOffset.left - pOffset.width - lineWidth + 10;
+    var playerIndex;
+
+    for(var i=0; i<itemChildEls.length; i++){
+        if(itemChildEls[i].getAttribute('data-id') === pEl.getAttribute('data-id')){
+            playerIndex = i + 1;
+        }
+    }
+
+    document.querySelector('#line-container').style.top = elPosition + ((pOffset.width/2)-10) + "px";
+    document.querySelector('#line-container').style.left = pOffset.left + pOffset.width - projectOffset.left - 10 + "px"
+
+    if(playerIndex < itemChildEls.length && playerIndex%columnCount !== 0){
+        document.querySelector('#player-line').style.width = lineWidth + "px";
+        document.querySelector('#line-box').style.width = diff + "px";
+        document.querySelector('#line-box').style.left = lineWidth + "px";
+        document.querySelector('#line-box').style.height = (pOffset.width/2) + lineWidth + 20 + "px";
+    }else{
+        document.querySelector('#player-line').style.width = diff + lineWidth + "px";
+        document.querySelector('#line-box').style.width = 0;
+        document.querySelector('#line-box').style.height = 0;
+    }
+}
+
+function populateDetail(){
+
+}
+
+function hideDetail(el){
+    document.querySelector('#line-container').style.top = "0px";
+    document.querySelector('#line-container').style.left = "-1000px"
+
+  //  console.log("hide")
+}
+
+function updatePageTexts(){
+    updatePageDate();
+}
+
+function updatePageDate(){
+    let pubDate = new Date(window.guardian.config.page.webPublicationDate)
+    let pubDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour:'numeric', minute:'numeric', timeZone : 'UTC', timeZoneName : 'short'};
+    let dateStr = pubDate.toLocaleDateString('en-GB',pubDateOptions).split(",").join(" ").split("  ").join(" ");
+
+    document.querySelector(".time-stamp").innerHTML = dateStr;
+}
+
+console.log(window.guardian.config.page); //.shortUrl
 
 initTemplate();
