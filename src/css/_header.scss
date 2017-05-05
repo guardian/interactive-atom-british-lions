@@ -1,5 +1,6 @@
 @import "palette";
 $header-height: gs-height(15);
+$header-height-mobile: gs-height(8);
 
 .header-wrapper{
 	position: relative;
@@ -22,13 +23,16 @@ $header-height: gs-height(15);
 
 
 .header-inner-wrapper{
-	position: absolute;
+	position: relative;
 	height: auto; 
-	bottom: 0;
+	
 	width:100%;
-
 	background-color:rgba(0,0,0,0.7);
 
+	@include mq(desktop){
+		position: absolute;
+		bottom: 0;
+	}
 
 	.header-inner-container{
 		width:100%;
@@ -37,28 +41,26 @@ $header-height: gs-height(15);
 	}
 
 	.header-inner-main{
-			width:100%;
-			max-width: gs-span(7);
-			padding-bottom: gs-height(1);
+			width:gs-span(4);
+			padding: 0 10px gs-height(1);
 
-			@include mq(mobileLandscape){
-				margin-left:20px;
-				margin-right:20px;
+			@include mq(tablet){
+				width:100%;
+				max-width: gs-span(7);
+				padding: 0 20px gs-height(1);
 			}
 
 			@include mq(desktop){
-				padding:0 0  gs-height(1) 0;
-				margin-left:20px;
 				max-width: gs-span(8);
 			}
 
 			@include mq(leftCol){
-				 margin-left: 180px;
+				 margin-left: 160px;
 				 margin-right:0;			   
 			}
 
 			@include mq(wide){
-				 margin-left: 260px;			   
+				 margin-left: 240px;			   
 			}
 		}	
 
@@ -88,19 +90,25 @@ $header-height: gs-height(15);
 
 
 .header-container {
-	max-width:1300px;
-	margin: 0 auto;
-	background:url(./assets/imgs/badge-color.png);
+	width:100%;
+	max-width: 1300px;
+	margin:0 auto;
+	background:url('<%= path %>/assets/imgs/badge-color.png');
 	//background-blend-mode:screen; linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
 	background-repeat:no-repeat;
 	height:100%;
+
 
 	header{
 		position: relative;
 		margin:0;
 		overflow: hidden;
-		height: gs-height(15 );
+		height: $header-height-mobile;
 		color:$neutral-6;
+
+		@include mq(desktop){
+			height: $header-height;
+		}
 
 		.header-background{
 			position:absolute;
@@ -112,21 +120,18 @@ $header-height: gs-height(15);
 			height: 100%;
 		}
 
-
 		h1{
 			@include fs-headline(9);
 			font-size:3.25rem;
 			font-weight: 200;
 			margin-bottom: $gs-baseline;
 		}
+
 		h2{
 			@include fs-headline(6);
 			margin-top:42px;
 			// margin-bottom:18px;
 		}
-
-
-
 
 		ul{
 			margin:0;

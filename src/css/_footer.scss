@@ -1,9 +1,14 @@
-footer{
-		padding-bottom:24px;
+footer{	
+		padding:$gs-baseline 10px gs-height(1);
+	
 		border-top:1px solid #f1f1f1;
 		margin-top:-6px;
-		padding-top:6px;
+		
 		max-width:620px;
+
+		@include mq(tablet){
+				padding:$gs-baseline 20px gs-height(1);
+			}
 		ul{
 			margin:0;
 			padding:0;
@@ -36,10 +41,11 @@ footer{
 			}
 		}
 		@media(min-width:1140px){
+			padding:$gs-baseline 20px gs-height(1) 0;
 			margin-top:-24px;
 			margin-left:160px;
 		}
 		@media(min-width:1300px){
-			margin-left:240px;
+			margin-left:260px;
 		}
 	}

@@ -11,7 +11,7 @@
 @import "headerAni";
 @import "facewall";
 @import "footer";
-@import "diamonds";
+// @import "diamonds";
 @import "share";
 @import "detail";
 
@@ -19,7 +19,7 @@
 // @import "embed";
 
 // Uncomment for full screen (including immersive article main media)
-// @import "fullscreen";
+//@import "fullscreen";
 
 
 
@@ -90,6 +90,16 @@ figure.element {
 	#gv-content-container{
 		margin-top: gs-height(1);
 
+		padding:0 10px;
+
+		@include mq(tablet){
+			padding:0 20px;
+		}
+
+		@include mq(desktop){
+			padding:0;
+		}
+
 		h3{
 			@include fs-header(4);
 		}
@@ -139,7 +149,6 @@ figure.element {
 			}
 		}
 		@media(min-width:1140px){
-			
 			h3{
 				// font-size:60px;
 				span{

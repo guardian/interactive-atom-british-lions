@@ -36,16 +36,17 @@
 	.close-overlay-btn{
 		width:44px;
 		height:44px;
-		background-color:#333;
-		background-image: url('<%= path %>/assets/arrow.svg');
+		background-color:$neutral-2;
+		background-image: url('<%= path %>/assets/cross.svg');
 		border-radius:9999px;
 		position: absolute;
-		top: gs-height(1);
-		left:-14px;
+		top: $gs-baseline;
+		right:$gs-gutter*2;
 		background-size:60%;
 		background-repeat:no-repeat;
 		background-position:center;
 		transform:rotate(180deg);
+		cursor:pointer;
 	}
 
 	.mobile-detail-box{
@@ -96,9 +97,7 @@
 
 	.detail-item-container{
 		h5{
-			font-size:30px;
-			font-weight:900;
-			line-height: 1em;
+			@include fs-header(4);
 			margin:0 0 6px;
 		}
 		ul{
@@ -157,6 +156,10 @@
 		.detail-item-container{
 			margin-bottom:30px;
 		}
+	}
+
+	.detail-item-container{
+		width:gs-span(3);
 	}
 
 	#detail-overlay-container{

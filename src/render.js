@@ -46,7 +46,7 @@ function formatData(data) {
     
     players.map((player) => {
     	player.id = "player-"+count;
-    	player.photo_filename = player.name.replace(/'/,'')+'.jpg';
+    	player.photo_filename = encodeURIComponent(player.name.replace(/'/,'')+'.jpg');
     	player.homeNation = player["Home nation"];
         player.Description = player.description;
     	count++;
@@ -66,6 +66,11 @@ function formatData(data) {
 
 
 function getSections(a, b, s, copyArr) {
+
+
+
+
+
     let d = [];
 
     // set array framework
@@ -92,6 +97,8 @@ function getSections(a, b, s, copyArr) {
                 tempArr.push(b[k]);
             }
         }
+
+        tempArr = _uniq(tempArr);
 
         d[i].items = tempArr;
     }

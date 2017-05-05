@@ -1,6 +1,6 @@
 import Mustache from 'mustache';
 
-var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo" data-src="{{{photo_filename}}}"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
+var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
 var closeBtnHTML = '<div class="close-overlay-btn"></div>';
 
 //import detailTemplate from '<%=path%>/templates/share.html!text'
@@ -31,7 +31,6 @@ function initTemplate(){
             initScroll();
             initEvents();
             updatePageTexts();
-
 
         }
     }
@@ -73,7 +72,7 @@ function initScroll(){
         //if(isMobile) { baseUrl = "<%=path%>/assets/imgs/playersOpt/" }
 
         var itemPhoto = els[index].querySelector('.item-photo').getAttribute('data-src');
-        els[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + encodeURIComponent(itemPhoto) + ")"
+        els[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + itemPhoto + ")"
         //console.log(baseUrl + encodeURIComponent(itemPhoto))
         // if(isMobile){
         //    detailEls[index].setAttribute('data-loaded','true'); 
@@ -101,15 +100,14 @@ function debounce(func, wait, immediate) {
 
 function initEvents(){
 
-
-
-    [].slice.apply(document.querySelectorAll('.facewall-item[data-loaded="true"]')).forEach(el => {
+     [].slice.apply(document.querySelectorAll('.facewall-item')).forEach(el => {
         if(!isMobile){
             el.addEventListener('mouseover', () => moveDetailBox(el));
-            el.addEventListener('mouseout', () => hideDetail(el));
+            //el.addEventListener('mouseout', () => hideDetail(el));
         }
         if(isMobile){
             el.addEventListener('click', () => moveDetailBox(el));
+
         }
           
     });
@@ -121,16 +119,15 @@ function getPlayerData(r){
     let o;
     [].slice.apply(dataset).forEach(el => {
         if(el.id==r){o=el}
-
     });
     return o;
 
 }
 
 function moveDetailBox(pEl){
-
     let playerData = getPlayerData(pEl.getAttribute("data-id"));
     let detailHTML = Mustache.render(detailTemplate, playerData);
+
     if(!isMobile){
         document.querySelector('.detail-box').innerHTML = detailHTML;
         document.querySelector('.mobile-detail-box').style.display = 'none';
@@ -140,14 +137,12 @@ function moveDetailBox(pEl){
          document.querySelector('.mobile-detail-box').innerHTML = closeBtnHTML+detailHTML;
          document.querySelector('.mobile-detail-box').style.display = 'block';
          document.querySelector('.detail-box').display = 'none';
+         document.querySelector('.close-overlay-btn').addEventListener('click', function(){ hideMobileDetail()});
     }
-    
-
+  
     var pOffset = pEl.getBoundingClientRect();
     var projectOffset = document.querySelector('.interactive-container').getBoundingClientRect();
-    var elPosition = pOffset.top - projectOffset.top;
-
-   
+    var elPosition = pOffset.top - projectOffset.top;   
 
     var totalOffset = elPosition + document.querySelector('#detail-box-container').getBoundingClientRect().height;
     var teamContainerHeight = document.querySelector('.interactive-container').getBoundingClientRect().height;
@@ -194,6 +189,11 @@ function moveDetailBox(pEl){
     }
 }
 
+
+
+function hideMobileDetail(){
+    document.querySelector('.mobile-detail-box').style.display = 'none';
+}
 
 function hideDetail(el){
     document.querySelector('#line-container').style.top = "0px";

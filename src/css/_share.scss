@@ -4,44 +4,58 @@
 
 .share-container {
     max-width:1260px;
-    margin: 0 10px;
+    
     padding: 0 10px 6px;
     border-bottom: solid 1px $neutral-5;
     
     height:auto;
 
+    @include mq(tablet){
+        margin: 0 10px;
+    }
+
 
 
     .share-inner{
-        position: relative;
+            position: relative;
 
-        overflow: hidden;
-        height: gs-height(1)+$gs-baseline;
-        color:$neutral-1;
+            overflow: hidden;
+            height: gs-height(2);
+            color:$neutral-1;
+        @include mq(tablet){
+            height: gs-height(1)+$gs-baseline;
+        }
 
     .share-inner-left{
-        margin: $gs-baseline 0;
+        margin: gs-height(1) 0;
+        @include mq(desktop){
+            margin: $gs-baseline 0;
+        }
+        
     }    
 
     .time-stamp{
         @include fs-textSans(3);
-        margin-top: 3px;
+        margin: $gs-baseline 0;
         color: $neutral-3;
+        @include mq(tablet){
+            margin-top: 3px;
+        }
     }
 
     .share-inner-main{
-                    position: absolute;
-                    height: auto; 
-                    top: 0;
-                    margin: $gs-baseline 0;
-                    padding-bottom: gs-height(1);
-
-                    @include mq(mobileLandscape){
-                        margin-left:20px;
-                        margin-right:20px;  
-                    }
+            position: absolute;
+            top: 0;
+            margin:0;
+                    // @include mq(mobileLandscape){
+                    //     margin-left:20px;
+                    //     margin-right:20px;  
+                    // }
 
                     @include mq(desktop){
+
+                    margin: $gs-baseline 0;
+                    padding-bottom: gs-height(1);
                         padding:0 0  gs-height(1) 0;
                         margin-left:20px;
                         max-width: gs-span(7);

@@ -2,25 +2,6 @@
 $facewall-bg: $neutral-1;
 
 
-.facewall-section{
-		margin-bottom:30px;
-		max-width:620px;
-
-		@media(min-width:740px){
-			margin-bottom:48px;
-		}
-
-		@media(min-width:1140px){
-			margin-left:160px;
-			margin-bottom:90px;
-		}
-
-		@media(min-width:1300px){
-			margin-left:240px;
-		}
-}
-
-
 .facewall-items-container{
 		font-size:0;
 		&:after{

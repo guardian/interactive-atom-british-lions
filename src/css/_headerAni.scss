@@ -1,4 +1,5 @@
-$aniTime:20s;
+$aniTime:18s;
+$marginAniVal:60px;
 
 .gv-head-img-one,
 .gv-head-img-two, 
@@ -7,14 +8,19 @@ $aniTime:20s;
     position:absolute;
     top: 0;
     right: 0;
-    height: $header-height;
+    height: $header-height-mobile;
     overflow: hidden;
     left:calc(51% - 10px);
     mix-blend-mode: screen;
+    display:none;
+    @include mq(desktop){
+        height: $header-height;
+        display:block;
+    }
 }
 
 .gv-head-img-one {
-	background:url(./assets/imgs/rugby-co-1.png);//linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
+	background:url('<%= path %>/assets/imgs/rugby-co-1.png');//linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
 	background-size:contain;
@@ -27,7 +33,7 @@ $aniTime:20s;
 }
 
 .gv-head-img-two {
-	background:url(./assets/imgs/rugby-co-2.png);
+	background:url('<%= path %>/assets/imgs/rugby-co-2.png');
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
 	background-size:contain;
@@ -39,7 +45,7 @@ $aniTime:20s;
 }
 
 .gv-head-img-three {
-	background:url(./assets/imgs/rugby-co-3.png);
+	background:url('<%= path %>/assets/imgs/rugby-co-3.png');
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
 	background-size:contain;
@@ -52,7 +58,7 @@ $aniTime:20s;
 }
 
 .gv-head-img-four {
-	background:url(./assets/imgs/rugby-co-4.png);
+	background:url('<%= path %>//assets/imgs/rugby-co-4.png');
 	background-blend-mode:multiply;
 	background-repeat:no-repeat;
 	background-size:contain;
@@ -68,16 +74,21 @@ $aniTime:20s;
 @keyframes AniOne {
     0% {
         opacity: 0;
+        margin-left:$marginAniVal;
     }
     3% {
         opacity: 1;
+        margin-left:0;
     }
+   
     22% {
         opacity: 1;
+        margin-left:0;
     }
     
     25% {
         opacity: 0;
+        margin-left:0-$marginAniVal;
     }
  
     100% {
@@ -91,17 +102,21 @@ $aniTime:20s;
     }
     25% {
         opacity: 0;
+        margin-left:$marginAniVal;
     }
     28% {
         opacity: 1;
+         margin-left:0;
     }
     
     47% {
         opacity: 1;
+        margin-left:0;
     }
  
     50% {
         opacity: 0;
+        margin-left:0-$marginAniVal;
     }
 }
 
@@ -111,17 +126,21 @@ $aniTime:20s;
     }
     50% {
         opacity: 0;
+        margin-left:$marginAniVal;
     }
-    58% {
+    53% {
         opacity: 1;
+        margin-left:0;
     }
     
     72% {
         opacity: 1;
+        margin-left:0;
     }
  
     75% {
         opacity: 0;
+        margin-left:0-$marginAniVal;
     }
 }
 
@@ -131,16 +150,20 @@ $aniTime:20s;
     }
     75% {
         opacity: 0;
+        margin-left:$marginAniVal;
     }
     78% {
         opacity: 1;
+        margin-left:0;
     }
     
     97% {
         opacity: 1;
+        margin-left:0;
     }
  
     100% {
         opacity: 0;
+        margin-left:0-$marginAniVal;
     }
 }
