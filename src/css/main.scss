@@ -96,7 +96,7 @@ figure.element {
 			padding:0 20px;
 		}
 
-		@include mq(desktop){
+		@include mq(leftCol){
 			padding:0;
 		}
 

@@ -28,7 +28,11 @@ $header-height-mobile: gs-height(8);
 	
 	width:100%;
 	background-color:rgba(0,0,0,0.7);
-
+// @each $bp in (tablet, desktop, leftCol, wide) {
+// 	        @include mq($bp) {
+// 	            max-width: map-get($mq-breakpoints, $bp);
+// 	        }
+//     	}
 	@include mq(desktop){
 		position: absolute;
 		bottom: 0;
@@ -38,6 +42,8 @@ $header-height-mobile: gs-height(8);
 		width:100%;
 		max-width:1300px;
 		margin: 0 auto;
+
+		
 	}
 
 	.header-inner-main{
@@ -51,11 +57,12 @@ $header-height-mobile: gs-height(8);
 			}
 
 			@include mq(desktop){
+				margin-left: 0;
 				max-width: gs-span(8);
 			}
 
 			@include mq(leftCol){
-				 margin-left: 160px;
+				 margin-left: 180px;
 				 margin-right:0;			   
 			}
 

@@ -1,5 +1,8 @@
 import Mustache from 'mustache';
+import { share } from '../lib/share.js';
 
+
+var shareFn = share('Are you at risk? Find out how pollution levels increase your chance of death',window.guardian.config.page.shortUrl)
 var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
 var closeBtnHTML = '<div class="close-overlay-btn"></div>';
 
@@ -41,6 +44,12 @@ function initTemplate(){
     //  if(!isMobile){
     //     moveDetailBox(document.querySelectorAll('.facewall-item')[0]);
     // } 
+
+    [].slice.apply(document.querySelectorAll('.gv-share-container button')).forEach(shareEl => {
+        var network = shareEl.getAttribute('data-network');
+        console.log(network)
+        shareEl.addEventListener('click',() => shareFn(network));
+    });
 }
 
 function initScroll(){
@@ -63,7 +72,15 @@ function initScroll(){
             for(var i=0;i<detailEls.length;i++){
                 if(detailEls[i].getBoundingClientRect().top < windowHeight * 2){ lazyLoadImage(i); }
             }
+
+            
         }
+
+        if(isMobile){
+            checkMobileDetail();
+        }
+
+
     };   
 
     function lazyLoadImage(index){
@@ -189,7 +206,15 @@ function moveDetailBox(pEl){
     }
 }
 
-
+function checkMobileDetail(){
+    //console.log("knobs")
+    if (document.querySelector('.mobile-detail-box')){
+        if(document.querySelector('.mobile-detail-box').style.display=='block'){
+           hideMobileDetail(); 
+        }
+    }
+    
+}
 
 function hideMobileDetail(){
     document.querySelector('.mobile-detail-box').style.display = 'none';

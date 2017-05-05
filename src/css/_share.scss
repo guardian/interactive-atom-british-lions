@@ -28,7 +28,7 @@
 
     .share-inner-left{
         margin: gs-height(1) 0;
-        @include mq(desktop){
+        @include mq(tablet){
             margin: $gs-baseline 0;
         }
         
@@ -52,12 +52,15 @@
                     //     margin-right:20px;  
                     // }
 
-                    @include mq(desktop){
+                    @include mq(tablet){ 
+                        margin: $gs-baseline 0 0;
+                        margin-left: 140px;
+                    }
 
-                    margin: $gs-baseline 0;
-                    padding-bottom: gs-height(1);
-                        padding:0 0  gs-height(1) 0;
-                        margin-left:20px;
+                    @include mq(desktop){
+                        margin: $gs-baseline 0 0;
+                        margin-left: 140px;
+                        padding-bottom: gs-height(1);
                         max-width: gs-span(7);
                     }
 
