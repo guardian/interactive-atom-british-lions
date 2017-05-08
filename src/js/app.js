@@ -2,8 +2,8 @@ import Mustache from 'mustache';
 import { share } from '../lib/share.js';
 
 
-var shareFn = share('Are you at risk? Find out how pollution levels increase your chance of death',window.guardian.config.page.shortUrl)
-var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo-detail" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
+var shareFn = share('Are you at risk? Find out how pollution levels increase your chance of death','https://gu.com/p/4dzzp')//window.guardian.config.page.shortUrl
+var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo-detail" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Club</strong> {{{club}}} </li></ul><ul><li><strong>Age</strong>{{{Age}}}</li> <li><strong>Height</strong>{{{heightMetric}}}</li> <li><strong>Weight</strong>{{{weightMetric}}}</li> </ul><p class="detail-item-description">{{{Description}}}</p></div>';
 var closeBtnHTML = '<div class="close-overlay-btn"></div>';
 
 //import detailTemplate from '<%=path%>/templates/share.html!text'
@@ -56,21 +56,21 @@ function initScroll(){
     var windowHeight = window.innerHeight;
     var els = document.querySelectorAll('.facewall-item[data-loaded="false"]');
     var detailEls = document.querySelectorAll('.detail-item-container[data-loaded="false"]');
-    window.addEventListener( 'scroll', debounce(function(){checkScrollHeight('mainView')}, 10) );
+    //window.addEventListener( 'scroll', debounce(function(){checkScrollHeight('mainView')}, 10) );
    // if(isMobile){ document.querySelector('#detail-scroll-area').addEventListener('scroll', debounce(function(){checkScrollHeight('detailView')},10) ); }
 
     function checkScrollHeight(view){
         if(view === "mainView"){
             for(var i=0;i<els.length;i++){
-                if(els[i].getBoundingClientRect().top < windowHeight * 1.5){ lazyLoadImage(i); }
+                lazyLoadImage(i);
 
-                if(els[i].getBoundingClientRect().top < windowHeight - 5){
-                    els[i].setAttribute('data-showed','true');
-                }
+                // if(els[i].getBoundingClientRect().top < windowHeight - 5){
+                //     els[i].setAttribute('data-showed','true');
+                // }
             }
         }else if(view === "detailView" && isMobile){
             for(var i=0;i<detailEls.length;i++){
-                if(detailEls[i].getBoundingClientRect().top < windowHeight * 2){ lazyLoadImage(i); }
+                 lazyLoadImage(i);
             }
 
             

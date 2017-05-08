@@ -23,7 +23,7 @@ export async function render() {
 
     let strStart = "<div class='interactive-container'>";
 
-    let strEnd = "</div>" 
+    let strEnd = "</div>"
 
     let shareHTML = Mustache.render(shareTemplate);
 
@@ -43,13 +43,16 @@ function formatData(data) {
     let players = data.sheets.Players;
     let sectionsCopy = data.sheets.sectionHeads;
     let count = 0;
-    
+
     players.map((player) => {
-    	player.id = "player-"+count;
-    	player.photo_filename = encodeURIComponent(player.name.replace(/'/,'')+'.jpg');
-    	player.homeNation = player["Home nation"];
+        player.id = "player-" + count;
+        player.photo_filename = encodeURIComponent(player.name.replace(/'/, '') + '.jpg');
+        player.homeNation = player["Home nation"];
         player.Description = player.description;
-    	count++;
+        player.Age = getPlayerAge(player["date of birth"]);
+        player.heightMetric = player.Height.split(" / ")[0].toLowerCase();
+        player.weightMetric = player.Weight.split(" / ")[0].replace(/\s/g, "").toLowerCase();
+        count++;
     })
 
     let sectionTitles = getUniques(players, 'detailed position');
@@ -62,6 +65,33 @@ function formatData(data) {
 
     return players;
 }
+
+
+
+function getPlayerAge(d) {
+
+    let playerAge = calculateAge(d.split('/')[1], d.split('/')[0], d.split('/')[2]);
+
+    return playerAge;
+}
+
+
+function calculateAge(birthMonth, birthDay, birthYear) {
+    var currentDate = new Date('2017/06/03');
+    var currentYear = currentDate.getFullYear();
+    var currentMonth = currentDate.getMonth();
+    var currentDay = currentDate.getDate();
+    var calculatedAge = currentYear - birthYear;
+
+    if (currentMonth < birthMonth - 1) {
+        calculatedAge--;
+    }
+    if (birthMonth - 1 == currentMonth && currentDay < birthDay) {
+        calculatedAge--;
+    }
+    return calculatedAge;
+}
+
 
 
 
@@ -120,7 +150,3 @@ function getUniques(a, s) {
 
     return newArr;
 }
-
-
-
-

@@ -2,6 +2,8 @@
 $header-height: gs-height(15);
 $header-height-mobile: gs-height(4);
 
+
+
 .header-wrapper{
 	position: relative;
 	width:100%;
@@ -93,6 +95,17 @@ $header-height-mobile: gs-height(4);
 		    width: 8.75rem;
 		    background-color: rgba(255,255,255,0.2);
 		}
+
+		.standy-header{
+		color: white !important;
+		@include fs-headline(4);
+		font-size:36px !important;
+		line-height: 1em;
+		font-weight:200 !important;
+			@include mq(tablet){
+				font-size:52px !important;
+			}
+		}
 }
 
 
@@ -168,3 +181,5 @@ $header-height-mobile: gs-height(4);
 
 	}
 }
+
+
