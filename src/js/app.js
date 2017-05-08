@@ -3,7 +3,7 @@ import { share } from '../lib/share.js';
 
 
 var shareFn = share('Are you at risk? Find out how pollution levels increase your chance of death',window.guardian.config.page.shortUrl)
-var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
+var detailTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="item-photo-detail" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div><h5>{{{name}}} </h5><ul>    <li><strong>Country</strong> {{{homeNation}}}</li><li><strong>Sport</strong> </li><li><strong>Event</strong></li></ul><p class="detail-item-description">{{{Description}}}</p></div>';
 var closeBtnHTML = '<div class="close-overlay-btn"></div>';
 
 //import detailTemplate from '<%=path%>/templates/share.html!text'
@@ -159,18 +159,15 @@ function moveDetailBox(pEl){
   
     var pOffset = pEl.getBoundingClientRect();
     var projectOffset = document.querySelector('.interactive-container').getBoundingClientRect();
+
+    //console.log(pOffset, projectOffset)
+
     var elPosition = pOffset.top - projectOffset.top;   
 
     var totalOffset = elPosition + document.querySelector('#detail-box-container').getBoundingClientRect().height;
     var teamContainerHeight = document.querySelector('.interactive-container').getBoundingClientRect().height;
     var isOffscreen = totalOffset > teamContainerHeight;
-    
-    if(isOffscreen){
-        var updatedOffset = teamContainerHeight - document.querySelector('#detail-box-container').getBoundingClientRect().height - 40;
-        document.querySelector('#detail-box-container').style.transform = 'translateY(' + updatedOffset + 'px)';
-        document.querySelector('#detail-box-container').style.webkitTransform = 'translateY(' + updatedOffset + 'px)';
-    }
-    
+        
 
     // Move lines
     var itemChildEls = pEl.parentNode.querySelectorAll('.facewall-item');
@@ -187,10 +184,12 @@ function moveDetailBox(pEl){
     }
 
     if(!isMobile){ 
-        document.querySelector('#detail-box-container').style.transform = 'translateY(' + elPosition + 'px)';
-        document.querySelector('#detail-box-container').style.webkitTransform = 'translateY(' + elPosition + 'px)';
+        
         document.querySelector('#line-container').style.top = elPosition + ((pOffset.width/2)-10) + "px";
         document.querySelector('#line-container').style.left = pOffset.left + pOffset.width - projectOffset.left - 10 + "px"
+         if(isOffscreen){ elPosition = elPosition - pOffset.height - 127; }
+        document.querySelector('#detail-box-container').style.transform = 'translateY(' + elPosition + 'px)';
+        document.querySelector('#detail-box-container').style.webkitTransform = 'translateY(' + elPosition + 'px)';
     }
     
 
@@ -207,7 +206,7 @@ function moveDetailBox(pEl){
 }
 
 function checkMobileDetail(){
-    //console.log("knobs")
+
     if (document.querySelector('.mobile-detail-box')){
         if(document.querySelector('.mobile-detail-box').style.display=='block'){
            hideMobileDetail(); 
