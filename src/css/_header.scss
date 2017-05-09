@@ -113,10 +113,14 @@ $header-height-mobile: gs-height(4);
 	width:100%;
 	max-width: 1300px;
 	margin:0 auto;
-	background:url('<%= path %>/assets/imgs/badge-color.png');
+	background:url('<%= path %>/assets/imgs/badge-color-mobile.png');
 	//background-blend-mode:screen; linear-gradient(to bottom, $header-bg 0%,$header-bg 100%),
 	background-repeat:no-repeat;
 	height:100%;
+
+	@include mq(tablet){
+		background:url('<%= path %>/assets/imgs/badge-color.png');
+	}
 
 
 	header{

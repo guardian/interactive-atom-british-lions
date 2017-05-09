@@ -52,6 +52,8 @@ function formatData(data) {
         player.Age = getPlayerAge(player["date of birth"]);
         player.heightMetric = player.Height.split(" / ")[0].toLowerCase();
         player.weightMetric = player.Weight.split(" / ")[0].replace(/\s/g, "").toLowerCase();
+        player.heightMetricNumber = Number( player.heightMetric.substring(0, player.heightMetric.length - 1) );
+        player.weightMetricNumber = Number( player.weightMetric.substring(0, player.weightMetric.length - 2) );
         count++;
     })
 
