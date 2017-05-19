@@ -123,7 +123,7 @@
 	.detail-item-container{
 		h5{
 			@include fs-header(4);
-			margin:0 0 6px;
+			margin:0 0 2px;
 		}
 		ul{
 			margin:0;
@@ -168,13 +168,47 @@
 		}
 
 		.item-photo-detail{
+			display: inline-block;
+				height:140px;
+				width: 140px;
+				margin-bottom:$gs-baseline;
+				margin-left: 0;
+	   			margin-right: 0;
+	   			float:left;
+			@include mq(desktop){
 			display: block;
 			height:gs-span(2);
 			width: gs-span(2);
 			border-radius: 9999px;
+			background-color:$facewall-bg;
 			margin-bottom:$gs-baseline;
 			background-size:contain;
 		}
+
+		}
+
+
+		.item-chart-detail{
+
+			display: inline-block;
+				height:140px;
+				width: 140px;
+				margin-bottom:$gs-baseline;
+				margin-left: 0;
+	   			margin-right: 0;
+	   			float:right;
+			@include mq(desktop){
+				display: block;
+				height:auto;
+				width: auto;
+				margin-bottom:$gs-baseline;
+				margin-left: -6px;
+	   			margin-right: 6px;
+	   			float:none;
+	   		}
+		}
+
+
 	}
 	.detail-section-container{
 		border-top:1px solid #ddd;
@@ -194,7 +228,7 @@
 
 	.detail-item-container{
 		width:100%;
-		max-width:gs-span(4);
+		max-width:gs-span(6);
 		padding-bottom: gs-height(1);
 		@include mq(desktop){
 			max-width:gs-span(3);

@@ -1,0 +1,44 @@
+.st0 {
+        opacity: 0.6;
+        fill: #BDBDBD;
+    }
+    
+    .st1 {
+        fill: none;
+        stroke: #BDBDBD;
+        stroke-width: 1.145;
+    }
+    
+    .st2 {
+        fill: #BDBDBD;
+    }
+    
+    .st3 {
+        font-family: 'TS3TextSans';
+    }
+    
+    .st4 {
+        font-size: 12px;
+    }
+
+    .selected-circle{
+        fill: red;
+        // stroke-width: 5;
+    }
+
+    .player-circle{
+        fill:$news-main-2;
+    }
+
+    .circle-position-hl{
+        fill:$news-main-1;
+        // stroke: rgba(0,86,137,0.5); 
+        // stroke-width: 6
+    }
+
+    .chart-marker-line{
+        stroke: $neutral-3;
+        stroke-width: 1;
+        stroke-dasharray:3, 3;
+
+    }

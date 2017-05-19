@@ -50,6 +50,7 @@ function formatData(data) {
         player.homeNation = player["Home nation"];
         player.Description = player.description;
         player.Age = getPlayerAge(player["date of birth"]);
+        player.detailedPos = player["detailed position"];
         player.heightMetric = player.Height.split(" / ")[0].toLowerCase();
         player.weightMetric = player.Weight.split(" / ")[0].replace(/\s/g, "").toLowerCase();
         player.heightMetricNumber = Number( player.heightMetric.substring(0, player.heightMetric.length - 1) );
@@ -57,9 +58,9 @@ function formatData(data) {
         count++;
     })
 
-    let sectionTitles = getUniques(players, 'detailed position');
+    let sectionTitles = getUniques(players, 'detailedPos');
 
-    let sectionsArr = getSections(sectionTitles, players, 'detailed position', sectionsCopy)
+    let sectionsArr = getSections(sectionTitles, players, 'detailedPos', sectionsCopy)
 
     players.sections = sectionsArr;
 
@@ -95,13 +96,9 @@ function calculateAge(birthMonth, birthDay, birthYear) {
 }
 
 
-
+//(sectionTitles, players, 'detailedPos', sectionsCopy)
 
 function getSections(a, b, s, copyArr) {
-
-
-
-
 
     let d = [];
 
@@ -111,29 +108,44 @@ function getSections(a, b, s, copyArr) {
         d.push(o)
     }
 
-    for (var i = 0; i < d.length; i++) {
+        for (var i = 0; i < d.length; i++) {
 
-        let tempArr = [];
-        for (var k = 0; k < b.length; k++) {
+            let tempArr = [];
 
-            if (d[i].key == b[k][s]) {
-                tempArr.push(b[k]);
+            for (var k = 0; k < b.length; k++) {
+
+                if (d[i].key == b[k][s]) {
+                    tempArr.push(b[k]);
+                }
             }
+
+            for (var k = 0; k < copyArr.length; k++) {
+
+                if (d[i].key == copyArr[k]['position']) {
+                    d[i].head = copyArr[k]['title']
+                    d[i].description = copyArr[k]['description']
+
+                        // another for loop to add pla
+                        for (var nn = 0; nn < b.length; nn++){
+                            if(b[nn]['detailedPosition'] == copyArr[k]['position']) { tempArr.push(b[nn])}
+                        }
+
+                    //if(b[k]['detailedPosition'] == copyArr[k]['position']) { tempArr.push(b[k])}
+                
+                }
+            }
+
+            tempArr = _uniq(tempArr);
+
+              for (var k = 0; k < tempArr.length; k++) {
+      
+                    console.log(d[i]['key'],tempArr[k]['name'], tempArr[k]['detailedPos'], )
+              }
+
+            d[i].items = tempArr;
         }
 
-        for (var k = 0; k < copyArr.length; k++) {
-
-            if (d[i].key == copyArr[k]['position']) {
-                d[i].head = copyArr[k]['title']
-                d[i].description = copyArr[k]['description']
-                tempArr.push(b[k]);
-            }
-        }
-
-        tempArr = _uniq(tempArr);
-
-        d[i].items = tempArr;
-    }
+    //console.log(d)    
 
     return d;
 
