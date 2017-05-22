@@ -168,7 +168,11 @@ $facewall-bg: $neutral-5;
 			text-align: left;
 			color:#767676;
 			margin:2px 0 0;
-			line-height:1em;
+			line-height:1.2em;
+
+			@include mq(desktop){
+				line-height:1em;
+			}
 		}
 		&[data-showed="true"]{
 			.item-photo-container .item-photo{
