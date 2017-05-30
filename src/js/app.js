@@ -63,7 +63,7 @@ function initTemplate(){
 
 
 
-    xhr.open('GET', '<%= path %>/assets/data/players.json', true);
+    xhr.open('GET', '<%= path %>/assets/players.json', true);
     xhr.send(null);
 
     //  if(!isMobile){
