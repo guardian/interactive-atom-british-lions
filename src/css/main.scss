@@ -103,6 +103,7 @@ figure.element {
 
 		h3{
 			@include fs-header(4);
+			margin-bottom: 3px;
 		}
 		
 		p.section-description{
