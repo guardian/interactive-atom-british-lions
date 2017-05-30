@@ -1,6 +1,6 @@
 import Mustache from 'mustache'
-import fs from 'file-system'
-import rp from 'request-promise'
+import fs from 'fs'
+import rp from 'request-promise-native'
 import groupArray from 'group-array'
 
 import {
@@ -131,21 +131,21 @@ function getSections(a, b, s, copyArr) {
                         }
 
                     //if(b[k]['detailedPosition'] == copyArr[k]['position']) { tempArr.push(b[k])}
-                
+
                 }
             }
 
             tempArr = _uniq(tempArr);
 
               for (var k = 0; k < tempArr.length; k++) {
-      
+
                     console.log(d[i]['key'],tempArr[k]['name'], tempArr[k]['detailedPos'], )
               }
 
             d[i].items = tempArr;
         }
 
-    //console.log(d)    
+    //console.log(d)
 
     return d;
 

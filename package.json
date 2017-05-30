@@ -47,5 +47,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "group-array": "^0.3.3",
+    "mustache": "^2.3.0"
+  }
 }
