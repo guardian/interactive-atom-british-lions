@@ -192,7 +192,7 @@ function createTeam(team, players){
 
 	makeTeamSprite(team, players, 130, src, function(){ makeTeamSprite(team, players, 240, src,
 		function(){
-			makeTeamSprite(team, players, 270, src, function(){});
+			makeTeamSprite(team, players, 270, src, function(){ });
 		});
 	});
 
