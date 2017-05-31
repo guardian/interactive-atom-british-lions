@@ -116,8 +116,12 @@ function initScroll(){
         var baseUrl = "<%=path%>/assets/imgs/players/";
         //if(isMobile) { baseUrl = "<%=path%>/assets/imgs/playersOpt/" }
 
+        // uncomment thes2 lines to add images individually
         var itemPhoto = els[index].querySelector('.item-photo').getAttribute('data-src');
         els[index].querySelector('.item-photo').style.backgroundImage = "url(" + baseUrl + itemPhoto + ")"
+
+
+
         //console.log(baseUrl + encodeURIComponent(itemPhoto))
         // if(isMobile){
         //    detailEls[index].setAttribute('data-loaded','true'); 

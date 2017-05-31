@@ -80,12 +80,7 @@ $facewall-bg: $neutral-5;
 		}
 		@include mq(tablet){
 			width:calc(100% / 4);
-			.item-photo-container{
-				.item-flag{
-					width:36px;
-					height:36px;
-				}
-			}
+			
 		}
 		@include mq(desktop){
 			width:calc(100% / 4);
@@ -102,9 +97,6 @@ $facewall-bg: $neutral-5;
 		margin-bottom:3px;
 		position: relative;
 		vertical-align: top;
-
-
-	
 
 		.item-photo-container{
 			width:100%;
