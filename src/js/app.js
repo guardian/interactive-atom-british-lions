@@ -10,7 +10,7 @@ var svgChart = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.
 var detailImgDiv = '<div class="item-photo-detail" style="background-image:url(<%= path %>/assets/imgs/players/{{{photo_filename}}});"></div>';
 
 var svgDiv = '<div class="item-chart-detail">'+svgChart+'</div>'
-var shareFn = share('The Guardian player-by-player guide to the British & Irish Lions 2017 squad','https://gu.com/p/4dzzp');
+var shareFn = share('The Guardian player-by-player guide to the British & Irish Lions 2017 squad','https://gu.com/p/6bj4b');
 var closeBtnHTML = '<div class="close-overlay-btn"></div>';
 
 var detailMobileTemplate = '<div class="detail-item-container" data-id="{{{id}}}" data-loaded="false"><div class="mobile-head-area">'+detailImgDiv+'<div class="mobile-head-area-text"><h5>{{{name}}} </h5><ul> <li><strong>Height</strong>{{{heightMetric}}}</li> <li><strong>Weight</strong>{{{weightMetric}}}</li> <li><strong>Age</strong>{{{Age}}}</li></ul></div></div>'+svgDiv+'<p class="detail-item-description">{{{Description}}}</p></div>'+closeBtnHTML;
