@@ -45,7 +45,10 @@ function formatData(data) {
     let count = 0;
 
     players.map((player) => {
+        
+
         player.id = "player-" + count;
+        player.spriteRef = "sprite-"+player.name.replace(/("|')/g, "").replace(" ", "");
         player.photo_filename = encodeURIComponent(player.name.replace(/'/, '') + '.jpg');
         player.homeNation = player["Home nation"];
         player.Description = player.description;
@@ -55,6 +58,9 @@ function formatData(data) {
         player.weightMetric = player.Weight.split(" / ")[0].replace(/\s/g, "").toLowerCase();
         player.heightMetricNumber = Number( player.heightMetric.substring(0, player.heightMetric.length - 1) );
         player.weightMetricNumber = Number( player.weightMetric.substring(0, player.weightMetric.length - 2) );
+
+        console.log(player.spriteRef);
+
         count++;
     })
 
@@ -144,10 +150,10 @@ function getSections(a, b, s, copyArr) {
 
             tempArr = _uniq(tempArr);
 
-              for (var k = 0; k < tempArr.length; k++) {
+              // for (var k = 0; k < tempArr.length; k++) {
 
-                    console.log(d[i]['key'],tempArr[k]['name'], tempArr[k]['detailedPos'], )
-              }
+              //       console.log(d[i]['key'],tempArr[k]['name'], tempArr[k]['detailedPos'], )
+              // }
 
             d[i].items = tempArr;
         }
