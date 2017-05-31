@@ -48,7 +48,7 @@ function formatData(data) {
         
 
         player.id = "player-" + count;
-        player.spriteRef = "sprite-"+player.name.replace(/("|')/g, "").replace(" ", "");
+        player.spriteClass = "sprite-"+player.name.replace(/("|')/g, "").replace(" ", "");
         player.photo_filename = encodeURIComponent(player.name.replace(/'/, '') + '.jpg');
         player.homeNation = player["Home nation"];
         player.Description = player.description;
@@ -59,7 +59,7 @@ function formatData(data) {
         player.heightMetricNumber = Number( player.heightMetric.substring(0, player.heightMetric.length - 1) );
         player.weightMetricNumber = Number( player.weightMetric.substring(0, player.weightMetric.length - 2) );
 
-        console.log(player.spriteRef);
+        //console.log(player.spriteClass);
 
         count++;
     })
