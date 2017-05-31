@@ -190,11 +190,9 @@ function createTeam(team, players){
 
 
 
-	makeTeamSprite(team, players, 180, src, function(){ makeTeamSprite(team, players, 240, src, 
+	makeTeamSprite(team, players, 130, src, function(){ makeTeamSprite(team, players, 240, src,
 		function(){
-			makeTeamSprite(team, players, 260, src, function(){
-			makeTeamSprite(team, players, 135, src, );
-		});
+			makeTeamSprite(team, players, 270, src, function(){});
 		});
 	});
 
