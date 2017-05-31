@@ -67,7 +67,7 @@ function formatData(data) {
     fs.writeFileSync("./.build/assets/players.json", JSON.stringify(players));
 
     players.sections.forEach(function(s, i){
-        if(i == 3 || i == 5){
+        if(i == 2 || i == 5){
 
             s.ad = i;
         }

@@ -56,7 +56,7 @@ function initTemplate(){
             initEvents();
             updatePageTexts();
 
-            console.log(dataset)
+            //console.log(dataset)
 
         }
     }
