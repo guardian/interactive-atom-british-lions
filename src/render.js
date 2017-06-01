@@ -23,7 +23,7 @@ export async function render() {
 
     let strStart = "<div class='interactive-container'>";
 
-    let strEnd = "</div>"
+    let strEnd = "</div>";
 
     let shareHTML = Mustache.render(shareTemplate);
 

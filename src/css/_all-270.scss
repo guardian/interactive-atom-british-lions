@@ -1,4 +1,10 @@
-[class^='sprite-'], [class*=' sprite-'] { background-image:url('assets/imgs/teams/all-270.jpg'); 
+@include mq(mobileLandscape){
+
+[class^='sprite-'], [class*=' sprite-'] { 
+
+
+background-image:url('assets/imgs/teams/all-270.jpg'); 
+
 background-size:945px 810px; width:270px; height:270px; }
 .sprite-JonathanJoseph { background-position:0 0; }
 .sprite-AlunWynJones { background-position:-135px 0; }
@@ -41,3 +47,6 @@ background-size:945px 810px; width:270px; height:270px; }
 .sprite-TadhgFurlong { background-position:-810px -270px; }
 .sprite-TaulupeFaletau { background-position:-810px -405px; }
 .sprite-TommySeymour { background-position:-810px -540px; }
+
+
+}
